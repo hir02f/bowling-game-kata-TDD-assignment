@@ -10,7 +10,6 @@ namespace BowlingGame
 {
     public class BowlingScores
     {
-        //private const char MISS = '-';
         private const char SPARE = '/';
         private const char STRIKE = 'X';
         private const int TEN = 10;
@@ -29,7 +28,6 @@ namespace BowlingGame
             {
                 return 0;
             }
-
         }
         public int CalculateScores(char[] input)
         {
@@ -37,29 +35,38 @@ namespace BowlingGame
 
             foreach (var c in input.Select((value, i) => (value, i)))
             {
+              
                 score += ReturnTheCorrectScore(c.value);
-
+                
                 if (c.value.Equals(STRIKE)) // Add 10 and next two frames
                 {
-                    score += TEN;       
-                    if (input[c.i+1].Equals(STRIKE))
+                    score += TEN; 
+                    
+                    if (c.i < input.Length - 1)                       
                     {
-                        score += TEN;
+                        if (input[c.i + 1].Equals(STRIKE))
+                        {                           
+                            score += TEN;                            
+                        }                         
+                        else                        
+                        {
+                                
+                            score += Convert.ToInt32(Char.GetNumericValue(input[c.i + 1]));                            
+                        }                        
                     }
-                    else
-                    {
-                        score += Convert.ToInt32(Char.GetNumericValue(input[c.i + 1]));
-                    }
-
-                    if (input[c.i + 2].Equals(STRIKE))
-                    {
-                        score += TEN;
-                    }
-                    else
-                    {
-                        score += Convert.ToInt32(Char.GetNumericValue(input[c.i + 2]));
-                    }
-                }
+                                            
+                    if (c.i < input.Length - 2)
+                    {                            
+                        if (input[c.i + 2].Equals(STRIKE))                        
+                        {                        
+                            score += TEN;                            
+                        }                        
+                        else                        
+                        {                        
+                            score += Convert.ToInt32(Char.GetNumericValue(input[c.i + 2]));                            
+                        }                      
+                    }                    
+                }            
             }
             return score;
         }
