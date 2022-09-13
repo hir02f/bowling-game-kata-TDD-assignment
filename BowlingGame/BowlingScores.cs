@@ -14,11 +14,10 @@ namespace BowlingGame
 
             foreach (char c in input)
             {
-               // if (c != 'X' || c != '/' || c != '-')
-                //{
-                    
-                    score += Convert.ToInt32(Char.GetNumericValue(c)); // GetNumericValue will ignore non-numbers like /,-
-                //}
+                if (Char.IsDigit(c)) // Ignore X,/.-
+                {                   
+                    score += Convert.ToInt32(Char.GetNumericValue(c)); 
+                }                
             }
             return score;
         }

@@ -12,9 +12,16 @@ public class TestTheScores
     }
 
     [Test]
-    public void Test1() //simple addition of scores
+    public void Simple_Addition_Of_Integers() 
     {
-        char[] score = { '1', '2' };        
-        _bowlingScores.CalculateScores(score).Should().Be(3);
+        char[] simpleScore = { '1', '2' };        
+        _bowlingScores.CalculateScores(simpleScore).Should().Be(3);
+    }
+
+    [Test]
+    public void Simple_Addition_Of_With_Dash()
+    {
+        char[] scoreWithDash = { '1', '2', '-' };
+        _bowlingScores.CalculateScores(scoreWithDash).Should().Be(3);
     }
 }
