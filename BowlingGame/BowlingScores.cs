@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,24 +15,50 @@ namespace BowlingGame
         private const char STRIKE = 'X';
         private const int TEN = 10;
 
+        public int ReturnTheCorrectScore(char input)
+        {
+            if (Char.IsDigit(input)) // Ignore X,/.-
+            {
+                return Convert.ToInt32(Char.GetNumericValue(input));
+            }
+            else if (input.Equals(SPARE)) // Add 10 and next frame
+            {
+                return TEN;
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
         public int CalculateScores(char[] input)
         {
             int score = 0;
 
-            //foreach (char c in input)
             foreach (var c in input.Select((value, i) => (value, i)))
             {
-                if (Char.IsDigit(c.value)) // Ignore X,/.-
-                {                   
-                    score += Convert.ToInt32(Char.GetNumericValue(c.value)); 
-                }
-                if (c.value.Equals(SPARE)) // Add 10 and next frame
-                {
-                    score += TEN;
-                }
+                score += ReturnTheCorrectScore(c.value);
+
                 if (c.value.Equals(STRIKE)) // Add 10 and next two frames
                 {
-                    score += TEN + Convert.ToInt32(Char.GetNumericValue(input[c.i+1])) + Convert.ToInt32(Char.GetNumericValue(input[c.i + 2])); 
+                    score += TEN;       
+                    if (input[c.i+1].Equals(STRIKE))
+                    {
+                        score += TEN;
+                    }
+                    else
+                    {
+                        score += Convert.ToInt32(Char.GetNumericValue(input[c.i + 1]));
+                    }
+
+                    if (input[c.i + 2].Equals(STRIKE))
+                    {
+                        score += TEN;
+                    }
+                    else
+                    {
+                        score += Convert.ToInt32(Char.GetNumericValue(input[c.i + 2]));
+                    }
                 }
             }
             return score;

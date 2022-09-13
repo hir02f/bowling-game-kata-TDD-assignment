@@ -45,8 +45,8 @@ public class TestTheScores
          char[] testFrames = { 'X', '1', '2' };
         _bowlingScores.CalculateScores(testFrames).Should().Be(16);
 
-       // char[] testFrames2 = { 'X', 'X', '4', '2' };
-       // _bowlingScores.CalculateScores(testFrames2).Should().Be(46);
+        char[] testFrames2 = { 'X', 'X', '4', '2' };
+        _bowlingScores.CalculateScores(testFrames2).Should().Be(46);
     }
 
     /* [Test]
