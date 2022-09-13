@@ -9,7 +9,7 @@ namespace BowlingGame
 {
     public class BowlingScores
     {
-        private const char MISS = '-';
+        //private const char MISS = '-';
         private const char SPARE = '/';
         private const char STRIKE = 'X';
         private const int TEN = 10;
@@ -27,11 +27,11 @@ namespace BowlingGame
                 }
                 if (c.value.Equals(SPARE)) // Add 10 and next frame
                 {
-                    score += 10;
+                    score += TEN;
                 }
                 if (c.value.Equals(STRIKE)) // Add 10 and next two frames
                 {
-                    score += 10 + Convert.ToInt32(Char.GetNumericValue(input[c.i+1])) + Convert.ToInt32(Char.GetNumericValue(input[c.i + 2])); 
+                    score += TEN + Convert.ToInt32(Char.GetNumericValue(input[c.i+1])) + Convert.ToInt32(Char.GetNumericValue(input[c.i + 2])); 
                 }
             }
             return score;
