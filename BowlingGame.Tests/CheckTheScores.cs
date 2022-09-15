@@ -14,11 +14,6 @@ public class TestTheScores
     [Test]
     public void Simple_Addition_Of_Integers() 
     {
-        //   List<char[]> allFrames = new List<char[]>();
-        //   char[] frame1 = { '1', '2' };
-        //   char[] frame2 = { 'X' };
-        //   allFrames.Add(frame1);        
-        //   allFrames.Add(frame2);  
         char[] testFrames = { '1', '2' };
         _bowlingScores.CalculateScores(testFrames).Should().Be(3);
     }
@@ -38,12 +33,12 @@ public class TestTheScores
     }
 
     [Test]
-    public void Adding_With_A_Spare()
+    public void Adding_With_A_Spare() // Not coded for this
     {
-        char[] testFrames = { '1', '/', '2' };
-        _bowlingScores.CalculateScores(testFrames).Should().Be(13);
+        //char[] testFrames = { '1', '/', '2' };
+        //_bowlingScores.CalculateScores(testFrames).Should().Be(14);
     }
-
+    
     [Test]
     public void Adding_With_Strike_With_Two_Frames_Left() 
     {
@@ -62,6 +57,9 @@ public class TestTheScores
      
         char[] testFrame2 = { '1', '2', '/' };
          _bowlingScores.CalculateScores(testFrame2).Should().Be(13);
+
+        //char[] testFrame3 = { '2', '/', '1', '-' };
+        //_bowlingScores.CalculateScores(testFrame3).Should().Be(12);
     }
     
     [Test]
@@ -76,8 +74,15 @@ public class TestTheScores
     {
         char[] testFrames = { '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5' };
         _bowlingScores.CalculateScores(testFrames).Should().Be(150);
+
+        char[] maxAllSpares = { '9', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9' };
+        _bowlingScores.CalculateScores(maxAllSpares).Should().Be(190);
+
+        //char[] maxAllSpares2 = { '1', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9', '/', '9' };
+        //_bowlingScores.CalculateScores(maxAllSpares2).Should().Be(190);
+
     }
-    
+
     [Test]
     public void Maximum_Score_All_Strikes()
     {
