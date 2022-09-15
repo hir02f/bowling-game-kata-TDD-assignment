@@ -14,10 +14,15 @@ public class TestTheScores
     [Test]
     public void Simple_Addition_Of_Integers() 
     {
-        char[] simpleScore = { '1', '2' };        
-        _bowlingScores.CalculateScores(simpleScore).Should().Be(3);
+        //   List<char[]> allFrames = new List<char[]>();
+        //   char[] frame1 = { '1', '2' };
+        //   char[] frame2 = { 'X' };
+        //   allFrames.Add(frame1);        
+        //   allFrames.Add(frame2);  
+        char[] testFrames = { '1', '2' };
+        _bowlingScores.CalculateScores(testFrames).Should().Be(3);
     }
-
+    
     [Test]
     public void Simple_Addition_Of_Integers_With_Dash()
     {
@@ -58,25 +63,32 @@ public class TestTheScores
         char[] testFrame2 = { '1', '2', '/' };
          _bowlingScores.CalculateScores(testFrame2).Should().Be(13);
     }
-
+    
     [Test]
     public void Adding_Ten_Frames_No_Spares_Or_Strikes()
     {
         char[] testFrames = { '9', '-', '9', '-', '9', '-', '9', '-', '9', '-', '9', '-', '9', '-', '9', '-', '9', '-', '9', '-' };
         _bowlingScores.CalculateScores(testFrames).Should().Be(90);
     }
-
+    
     [Test]
-    public void Adding_Twelve_Frames_With_Spares_And_Or_Strikes()
+    public void Adding_Ten_Frames_With_Spares_With_Bonus()
     {
-        //char[] testFrames = { '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/' };
-        //_bowlingScores.CalculateScores(testFrames).Should().Be(150);
+        char[] testFrames = { '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5', '/', '5' };
+        _bowlingScores.CalculateScores(testFrames).Should().Be(150);
+    }
+    
+    [Test]
+    public void Maximum_Score_All_Strikes()
+    {
+        char[] testFrames = { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' };
+        _bowlingScores.CalculateScores(testFrames).Should().Be(300);
     }
 
     [Test]
-    public void Adding_Twelve_Frames_With_All_Strikes()
+    public void Adding_Game_With_Bonus()
     {
-        //char[] testFrames = { 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X' };
-        //_bowlingScores.CalculateScores(testFrames).Should().Be(300);
+       // char[] testFrames = { 'X', '9', '-', '9', '-', '9', '-', '9', '-', '9', '-', '9', '-', '9', '-', '9', '-', '9', '/', '1' };
+       // _bowlingScores.CalculateScores(testFrames).Should().Be(300);
     }
 }
